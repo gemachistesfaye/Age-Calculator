@@ -94,30 +94,35 @@ document.addEventListener("DOMContentLoaded", () => {
   showSection("home-section");
   activateNav("home-section");
 
-  /* ================== FAQ TOGGLE ================== */
-  document.querySelectorAll(".faq-question").forEach(q => {
-    q.addEventListener("click", () => {
-      const answer = q.nextElementSibling;
-      const isOpen = q.classList.contains("active");
+  
+/* ================== FAQ TOGGLE ================== */
+document.querySelectorAll(".faq-question").forEach(q => {
+  q.addEventListener("click", () => {
+    const answer = q.nextElementSibling;
+    const isOpen = q.classList.contains("active");
 
-      // Close all
-      document.querySelectorAll(".faq-question").forEach(item => {
-        item.classList.remove("active");
-        const a = item.nextElementSibling;
-        a.style.maxHeight = null;
-        a.style.opacity = 0;
-        a.style.padding = "0 22px";
-      });
-
-      // Open selected
-      if (!isOpen) {
-        q.classList.add("active");
-        answer.style.maxHeight = answer.scrollHeight + "px";
-        answer.style.opacity = 1;
-        answer.style.padding = "15px 22px";
-      }
+    // Close all
+    document.querySelectorAll(".faq-question").forEach(item => {
+      item.classList.remove("active");
+      const a = item.nextElementSibling;
+      a.style.maxHeight = "0px";
+      a.style.opacity = "0";
+      a.style.padding = "0 22px";
     });
+
+    // Open selected
+    if (!isOpen) {
+      q.classList.add("active");
+
+      // 👇 wait for layout update (THIS FIXES CUT TEXT)
+      setTimeout(() => {
+        answer.style.padding = "15px 22px";
+        answer.style.opacity = "1";
+        answer.style.maxHeight = answer.scrollHeight + 40 + "px";
+      }, 10);
+    }
   });
+});
 
   /* ================== AGE CALCULATOR ================== */
   const calculateBtn = document.getElementById("calculateBtn");
