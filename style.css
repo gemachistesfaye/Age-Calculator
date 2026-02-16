@@ -780,12 +780,12 @@ color: var(--primary-dark);
 .faq-answer {
   max-height: 0;
   overflow: hidden;
-  padding: 20px 22px;
+  padding: 0 22px;
   opacity: 0;
   transform: translateY(-10px);
   transition: max-height 0.5s ease, opacity 0.5s ease, transform 0.5s ease, padding 0.5s ease;
-  line-height: 1.6;
 }
+
 
 .faq-answer ul {
   padding-left: 20px;
